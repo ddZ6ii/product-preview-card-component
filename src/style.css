@@ -78,10 +78,20 @@
 ######################################## */
 :root {
   --color-primary: hsl(30, 38%, 92%);
-  --color-accent: hsl(158, 36%, 37%);
+  --color-accent: #3c8067;
+  --color-accent-dark: #114632;
+  --color-complementary: #a34720;
   --color-neutral-50: hsl(0, 0%, 100%);
   --color-neutral-400: hsl(228, 12%, 48%);
   --color-neutral-900: hsl(212, 21%, 14%);
+
+  --font-body-small: 0.75rem;
+  --font-body: 0.875rem;
+  --font-heading: 2rem;
+
+  --border-radius: 8px;
+  --spacing: 1.5rem;
+  --transition-duration-timing: 150ms ease-out;
 }
 
 /* ########################################
@@ -127,6 +137,9 @@ ul {
 ############# BASIC STYLING ###############
 ######################################## */
 body {
+  color: var(--color-neutral-400);
+  font-size: var(--font-body);
+  font-weight: 500;
   /* Use static fonts by default... */
   font-family: 'Montserrat', sans-serif;
   /*...but prefer loading variable font if supported (feature query). */
@@ -137,6 +150,8 @@ body {
 
 h1,
 .price-discount {
+  line-height: 1;
+  font-size: var(--font-heading);
   /* Use static fonts by default... */
   font-family: 'Fraunces', sans-serif;
   /*...but prefer loading variable font if supported (feature query). */
@@ -144,6 +159,141 @@ h1,
     font-family: 'Fraunces VF', sans-serif;
   }
 }
+
+.wrapper {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  background-color: var(--color-primary);
+}
+
+.footer {
+  padding: var(--spacing);
+  text-align: center;
+  & .footer-icon {
+    color: var(--color-accent);
+  }
+  & .footer-link {
+    transition: all var(--transition-duration-timing);
+    &,
+    &:link {
+      color: var(--color-complementary);
+      text-underline-offset: 4px;
+    }
+    &:visited {
+      color: var(--color-neutral-400);
+    }
+    &:focus-visible,
+    &:hover {
+      color: var(--color-accent);
+      outline-color: var(--color-accent);
+      outline-offset: 1px;
+    }
+    &:focus-visible {
+      text-decoration: none;
+    }
+    &:hover {
+      font-weight: 700;
+    }
+    &:active {
+      color: var(--color-neutral-900);
+    }
+  }
+}
+
 /* ########################################
 ########### COMPONENT STYLING #############
 ######################################## */
+.product {
+  margin-inline: auto;
+  width: min(90%, 25em);
+  display: grid;
+
+  background-color: var(--color-neutral-50);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+
+  @media (min-width: 43.75em) {
+    width: min(90%, 45em);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  & .product-thumbnail {
+    & img {
+      @media (min-width: 43.75em) {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  & .product-info {
+    padding: var(--spacing);
+    display: grid;
+    gap: calc(0.8 * var(--spacing));
+
+    @media (min-width: 43.75em) {
+      padding: calc(1.5 * var(--spacing));
+      gap: calc(1.25 * var(--spacing));
+    }
+  }
+
+  & .product-tag {
+    font-size: var(--font-body-small);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  & .product-heading {
+    margin-top: calc(0.4 * var(--spacing));
+    color: var(--color-neutral-900);
+
+    @media (min-width: 43.75em) {
+      margin-top: calc(0.75 * var(--spacing));
+    }
+  }
+
+  & .product-pricing {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+    gap: calc(0.2 * var(--spacing)) calc(0.75 * var(--spacing));
+  }
+
+  & .price-discount {
+    color: var(--color-accent);
+  }
+
+  & .price-original {
+    text-decoration: line-through;
+  }
+
+  & .product-btn {
+    padding: calc(0.5 * var(--spacing));
+    display: flex;
+    flex-flow: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: calc(0.6 * var(--spacing));
+
+    background-color: var(--color-accent);
+    border-radius: var(--border-radius);
+
+    color: var(--color-neutral-50);
+    font-weight: 700;
+    transition: all var(--transition-duration-timing);
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-accent-dark);
+    }
+    &:focus-visible {
+      outline-offset: 4px;
+      outline-color: var(--color-accent);
+    }
+    &:active {
+      translate: 0 2%;
+    }
+  }
+}
