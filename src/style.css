@@ -1,7 +1,78 @@
 /* ########################################
 ############# CUSTOM FONTS ################
 ######################################## */
-
+/* Provide variable fonts as main format. */
+@font-face {
+  /* Use VF to make it distinguishable from static fonts. */
+  font-family: 'Fraunces VF';
+  src:
+    local('Fraunces'),
+    url('/assets/fonts/Fraunces/Fraunces-VariableFont_wght.woff2')
+      format('woff2-variations'),
+    url('/assets/fonts/Fraunces/Fraunces-VariableFont_wght.woff')
+      format('woff-variations'),
+    url('/assets/fonts/Fraunces/Fraunces-VariableFont_wght.ttf')
+      format('truetype-variations');
+  font-style: normal;
+  /* Allowable range for the weight of the variable font. */
+  font-weight: 700;
+  /* Displaying text quickly is a top priority, but ensure the custom web-font is used. */
+  font-display: swap;
+}
+@font-face {
+  /* Use VF to make it distinguishable from static fonts. */
+  font-family: 'Montserrat VF';
+  src:
+    local('Montserrat'),
+    url('/assets/fonts/Montserrat/Montserrat-VariableFont_wght.woff2')
+      format('woff2-variations'),
+    url('/assets/fonts/Montserrat/Montserrat-VariableFont_wght.woff')
+      format('woff-variations'),
+    url('/assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf')
+      format('truetype-variations');
+  font-style: normal;
+  /* Allowable range for the weight of the variable font. */
+  font-weight: 500 700;
+  /* Displaying text quickly is a top priority, but ensure the custom web-font is used. */
+  font-display: swap;
+}
+/* Provide static fonts as a fallback. */
+@font-face {
+  font-family: 'Fraunces';
+  src:
+    local('Fraunces'),
+    url('/assets/fonts/Fraunces/static/Fraunces-Bold.woff2') format('woff2'),
+    url('/assets/fonts/Fraunces/static/Fraunces-Bold.woff') format('woff'),
+    url('/assets/fonts/Fraunces/static/Fraunces-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src:
+    local('Montserrat'),
+    url('/assets/fonts/Montserrat/static/Montserrat-Medium.woff2')
+      format('woff2'),
+    url('/assets/fonts/Montserrat/static/Montserrat-Medium.woff') format('woff'),
+    url('/assets/fonts/Montserrat/static/Montserrat-Medium.ttf')
+      format('truetype');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src:
+    local('Montserrat'),
+    url('/assets/fonts/Montserrat/static/Montserrat-Bold.woff2') format('woff2'),
+    url('/assets/fonts/Montserrat/static/Montserrat-Bold.woff') format('woff'),
+    url('/assets/fonts/Montserrat/static/Montserrat-Bold.ttf')
+      format('truetype');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
 /* ########################################
 ############# STYLE GUIDE #################
 ######################################## */
@@ -55,7 +126,24 @@ ul {
 /* ########################################
 ############# BASIC STYLING ###############
 ######################################## */
+body {
+  /* Use static fonts by default... */
+  font-family: 'Montserrat', sans-serif;
+  /*...but prefer loading variable font if supported (feature query). */
+  @supports (font-variation-settings: normal) {
+    font-family: 'Montserrat VF', sans-serif;
+  }
+}
 
+h1,
+.price-discount {
+  /* Use static fonts by default... */
+  font-family: 'Fraunces', sans-serif;
+  /*...but prefer loading variable font if supported (feature query). */
+  @supports (font-variation-settings: normal) {
+    font-family: 'Fraunces VF', sans-serif;
+  }
+}
 /* ########################################
 ########### COMPONENT STYLING #############
 ######################################## */
