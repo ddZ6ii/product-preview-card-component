@@ -21,10 +21,33 @@
     <main>
       <section class="product">
         <div class="product-thumbnail">
-          <img
-            src="/assets/images/image-product-mobile-686.jpg"
-            alt="Bottle of Gabrielle Essence Eau de Parfum by Chanel"
-          />
+          <picture>
+            <!-- The combination of <picture>, <source> and <img> elements is used here to implement "art direction": the browser automatically serves a different image (different crop) at different screen sizes based on the "media" attribute set on the <source> element -->
+            <!-- At the same time, the "sizes" and "srcset" attributes are used to implement "resolution switching" for truly responsive images: the browser automatically picks from the provided pool the most optimized image based on user’s screen characteristics (size, zoom and DPR) -->
+            <source
+              media="(min-width: 700px)"
+              sizes="(min-width: 700px) 315px, 100vw"
+              srcset="
+                /assets/images/product/desktop/product-315.webp 315w,
+                /assets/images/product/desktop/product-475.webp 475w,
+                /assets/images/product/desktop/product-630.webp 630w,
+                /assets/images/product/desktop/product-945.webp 945w
+              "
+            />
+            <img
+              sizes="(min-width: 350px) 350px, 100vw"
+              srcset="
+                /assets/images/product/mobile/product-350.webp   350w,
+                /assets/images/product/mobile/product-525.webp   525w,
+                /assets/images/product/mobile/product-700.webp   700w,
+                /assets/images/product/mobile/product-1050.webp 1050w
+              "
+              src="/assets/images/image-product-mobile-686.webp"
+              alt="Bottle of Gabrielle Essence Eau de Parfum by Chanel"
+              width="350"
+              height="245"
+            />
+          </picture>
         </div>
         <div class="product-info">
           <header>
